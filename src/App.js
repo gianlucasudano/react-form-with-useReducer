@@ -9,11 +9,13 @@ import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Input from "./components/molecules/Input/Input";
+import { formData } from "./data/mocks";
 // import isPropValid from "@emotion/is-prop-valid";
 // import styled from "@emotion/styled";
 
 const theme = createMuiTheme();
 
+console.log(formData);
 export default function App() {
   return (
     <NoSsr>
@@ -28,13 +30,16 @@ export default function App() {
               <Typography variant="h5" component="h1" gutterBottom>
                 React, emotion, material-ui, jest, props-type, string-template
               </Typography>
-
-              <Input
-                label="ciccio"
-                itemId="prova"
-                type="text"
-                callback={(e) => console.log(e)}
-              />
+              {formData.ES.map(({ id, label, type, ...rest }, index) => (
+                <Input
+                  label={label}
+                  itemId={id}
+                  key={id}
+                  type={type}
+                  callback={(e) => console.log(e)}
+                  {...rest}
+                />
+              ))}
             </Box>
           </Container>
         </ThemeProvider>

@@ -1,7 +1,7 @@
 {
-  "name": "single-page-app-template",
+  "name": "react-form-with-usereducer",
   "version": "1.0.0",
-  "description": "template done starting from code sandbox react\nemotion, material-ui,jest, props-type, string-template are available",
+  "description": "an exercise using useReducer hook in a form",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
