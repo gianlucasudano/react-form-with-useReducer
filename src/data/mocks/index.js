@@ -28,7 +28,7 @@ Brazil:
     - Working hours
 - Maximum holiday allowance is 40 days */
 
-const fakeData = {
+const mocksData = {
   defaultFields: [
     {
       id: "firstName",
@@ -110,7 +110,10 @@ const fakeData = {
       countryName: "Brazil",
       countryCode: "BR"
     }
-  ]
+  ],
+  terms: {
+    countriesSelectorLabel: "Select a country"
+  }
 };
 
 // const initialState = items.reduce((acc, current, index) => {
@@ -123,11 +126,11 @@ const fakeData = {
 //   return acc;
 // }
 
-export const formData = fakeData.countries.reduce((acc, current) => {
-  const extendHolidayAllowance = fakeData.defaultFields.map((item) => {
+const formData = mocksData.countries.reduce((acc, current) => {
+  const extendHolidayAllowance = mocksData.defaultFields.map((item) => {
     const rules =
       item.id === "holidayAllowance"
-        ? fakeData.holidayAllowanceRules[current.countryCode]
+        ? mocksData.holidayAllowanceRules[current.countryCode]
         : undefined;
     return {
       ...item,
@@ -136,9 +139,11 @@ export const formData = fakeData.countries.reduce((acc, current) => {
   });
   const fields = [
     ...extendHolidayAllowance,
-    ...fakeData.extraFields[current.countryCode]
+    ...mocksData.extraFields[current.countryCode]
   ];
 
   acc[current.countryCode] = fields;
   return acc;
 }, {});
+
+export { mocksData, formData };

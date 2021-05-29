@@ -9,13 +9,18 @@ import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Input from "./components/molecules/Input/Input";
-import { formData } from "./data/mocks";
+import { formData, mocksData } from "./data/mocks";
 // import isPropValid from "@emotion/is-prop-valid";
 // import styled from "@emotion/styled";
-
+import NewEmployee from "./components/organisms/NewEmployee/NewEmployee";
 const theme = createMuiTheme();
 
 console.log(formData);
+
+const countrySelectorProps = {
+  options: mocksData.countries,
+  label: mocksData.terms.countriesSelectorLabel
+};
 export default function App() {
   return (
     <NoSsr>
@@ -30,7 +35,11 @@ export default function App() {
               <Typography variant="h5" component="h1" gutterBottom>
                 React, emotion, material-ui, jest, props-type, string-template
               </Typography>
-              {formData.ES.map(({ id, label, type, ...rest }, index) => (
+              <NewEmployee
+                countrySelectorProps={countrySelectorProps}
+                fieldsProps={formData.ES}
+              />
+              {/*formData.ES.map(({ id, label, type, ...rest }, index) => (
                 <Input
                   label={label}
                   itemId={id}
@@ -39,7 +48,7 @@ export default function App() {
                   callback={(e) => console.log(e)}
                   {...rest}
                 />
-              ))}
+              ))*/}
             </Box>
           </Container>
         </ThemeProvider>

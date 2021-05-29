@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-
 import Box from "@material-ui/core/Box";
+
 import { StyledError, StyledLabel, StyledInput } from "./Input.styled";
 const Input = ({ callback, label, itemId, type, ...rest }) => {
   const { rules } = rest;
