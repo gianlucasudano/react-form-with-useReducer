@@ -8,6 +8,7 @@ import { CssBaseline } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
+import Input from "./components/molecules/Input/Input";
 // import isPropValid from "@emotion/is-prop-valid";
 // import styled from "@emotion/styled";
 
@@ -27,6 +28,13 @@ export default function App() {
               <Typography variant="h5" component="h1" gutterBottom>
                 React, emotion, material-ui, jest, props-type, string-template
               </Typography>
+
+              <Input
+                label="ciccio"
+                itemId="prova"
+                type="text"
+                callback={(e) => console.log(e)}
+              />
             </Box>
           </Container>
         </ThemeProvider>
