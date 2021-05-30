@@ -86,14 +86,14 @@ const mocksData = {
   },
   holidayAllowanceRules: {
     ES: {
-      minDays: 30,
+      min: 30,
       label: "Minimum holiday allowance is 30 days"
     },
     GH: {
       label: "No laws on holiday allowance"
     },
     BR: {
-      maxDays: 40,
+      max: 40,
       label: "Maximum holiday allowance is 40 days"
     }
   },
@@ -126,15 +126,22 @@ const mocksData = {
 //   return acc;
 // }
 
+const validationRulesType = {
+  MIN_MAX: "MIN_MAX"
+};
+
 const formData = mocksData.countries.reduce((acc, current) => {
   const extendHolidayAllowance = mocksData.defaultFields.map((item) => {
     const rules =
       item.id === "holidayAllowance"
-        ? mocksData.holidayAllowanceRules[current.countryCode]
+        ? {
+            ...mocksData.holidayAllowanceRules[current.countryCode],
+            type: validationRulesType.MIN_MAX
+          }
         : undefined;
     return {
       ...item,
-      rules
+      validationRules: rules
     };
   });
   const fields = [

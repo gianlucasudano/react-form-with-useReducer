@@ -3,7 +3,7 @@ import Box from "@material-ui/core/Box";
 
 import { StyledError, StyledLabel, StyledInput } from "./Input.styled";
 const Input = ({ callback, label, itemId, type, ...rest }) => {
-  const { rules } = rest;
+  const { validationRules } = rest;
   return (
     <Box>
       <StyledLabel htmlFor={itemId}>{label}</StyledLabel>
@@ -12,7 +12,9 @@ const Input = ({ callback, label, itemId, type, ...rest }) => {
         id={itemId}
         type={type}
       />
-      {rules?.label && <StyledError label={rules?.label} {...rest} />}
+      {validationRules?.label && (
+        <StyledError label={validationRules?.label} {...rest} />
+      )}
     </Box>
   );
 };
