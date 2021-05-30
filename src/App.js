@@ -35,13 +35,15 @@ const NewEmployeeWrapper = () => {
     dispatch
   };
 
-  // console.log(state);
+  //console.log(state);
 
   return (
     <NewEmployee
       countrySelectorProps={countrySelectorProps}
       newEmployeeProps={state}
-    />
+    >
+      <div>{JSON.stringify(state.newClient, null, 10)}</div>
+    </NewEmployee>
   );
 };
 
@@ -56,7 +58,6 @@ export default function App() {
               <Typography variant="h5" component="h1" gutterBottom>
                 New Employee
               </Typography>
-
               <NewEmployeeWrapper />
             </Box>
           </Container>

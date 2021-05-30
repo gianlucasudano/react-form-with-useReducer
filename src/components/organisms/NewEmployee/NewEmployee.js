@@ -10,8 +10,8 @@ import {
 // we don't have API implemented and we need mocks data
 import { formData } from "../../../data/mocks";
 
-const NewEmployee = ({ countrySelectorProps, newEmployeeProps }) => {
-  const {
+const NewEmployee = ({ countrySelectorProps, newEmployeeProps, children }) => {
+  const {    
     dispatch,
     label,
     itemId,
@@ -22,7 +22,6 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps }) => {
 
   const { countryFields } = newEmployeeProps;
   const selectedCountryCodeRef = useRef();
-  const inputRef = useRef();
   const handleFilterChange = useCallback(
     (event) => {
       const { value } = event.target;
@@ -49,7 +48,6 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps }) => {
   const handleInputChange = useCallback(
     (event) => {
       const { id, value } = event.target;
-      inputRef.current = value;
       dispatch(setFieldsChanges({ id, value }));
       console.log({ id, value });
     },
@@ -57,6 +55,7 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps }) => {
   );
 
   return (
+    <>
     <form>
       <CountrySelector
         callback={handleFilterChange}
@@ -71,7 +70,6 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps }) => {
         <Input
           label={label}
           itemId={id}
-          inputRef={inputRef.current}
           key={id}
           type={type}
           callback={handleInputChange}
@@ -79,6 +77,8 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps }) => {
         />
       ))}
     </form>
+      {children}
+    </>
   );
 };
 
