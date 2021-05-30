@@ -17,6 +17,7 @@ export const StyledError = styled(Label, {
 });
 
 export const StyledLabel = styled("label")`
+  margin-top: ${(props) => props.theme.spacing()}px;
   display: block;
 `;
 

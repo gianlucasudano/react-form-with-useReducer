@@ -50,12 +50,10 @@ export default function App() {
           <CssBaseline />
           <Container maxWidth="sm">
             <Box my={4}>
-              <Typography variant="h4" component="h1" gutterBottom>
-                Simple app template
-              </Typography>
               <Typography variant="h5" component="h1" gutterBottom>
-                React, emotion, material-ui, jest, props-type, string-template
+                New Employee
               </Typography>
+
               <NewEmployeeWrapper />
             </Box>
           </Container>
