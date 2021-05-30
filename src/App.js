@@ -23,14 +23,14 @@ const NewEmployeeWrapper = () => {
   const [state, dispatch] = useReducer(newEmployeeReducer, {
     countryFields: {
       [initialCountry]: formData[initialCountry],
-      selectedCountryId: initialCountry
+      selectedCountryCode: initialCountry
     }
   });
 
   const countrySelectorProps = {
     options: mocksData.countries,
     label: mocksData.terms.countriesSelectorLabel,
-    selectedCountryId: state?.countryFields?.selectedCountryId,
+    selectedCountryCode: state?.countryFields?.selectedCountryCode,
     dispatch
   };
 
