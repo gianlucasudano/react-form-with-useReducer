@@ -2,6 +2,7 @@ import React, { useCallback, useRef } from "react";
 import CountrySelector from "./elements/CountrySelector/CountrySelector";
 import Input from "../../molecules/Input/Input";
 import {
+  setFieldsChanges,
   setCountry,
   setCountryFields
 } from "../../../reducers/newEmployeeActions";
@@ -21,6 +22,7 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps }) => {
 
   const { countryFields } = newEmployeeProps;
   const selectedCountryCodeRef = useRef();
+  const inputRef = useRef();
   const handleFilterChange = useCallback(
     (event) => {
       const { value } = event.target;
@@ -44,6 +46,16 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps }) => {
     [countryFields, dispatch]
   );
 
+  const handleInputChange = useCallback(
+    (event) => {
+      const { id, value } = event.target;
+      inputRef.current = value;
+      dispatch(setFieldsChanges({ id, value }));
+      console.log({ id, value });
+    },
+    [dispatch]
+  );
+
   return (
     <form>
       <CountrySelector
@@ -59,9 +71,10 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps }) => {
         <Input
           label={label}
           itemId={id}
+          inputRef={inputRef.current}
           key={id}
           type={type}
-          callback={(e) => console.log(e)}
+          callback={handleInputChange}
           {...rest}
         />
       ))}

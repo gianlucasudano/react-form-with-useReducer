@@ -4,8 +4,12 @@ const newEmployeeReducer = (state, action) => {
     case "SELECT_COUNTRY": {
       return {
         ...state,
-        ...state.countryFields,
-        ...payload
+        ...{
+          countryFields: {
+            ...state.countryFields,
+            ...payload
+          }
+        }
       };
     }
 
