@@ -5,6 +5,12 @@ const newEmployeeReducer = (state, action) => {
       return {
         ...state,
         ...{
+          newClient: {
+            ...state?.newClient,
+            countryCode: payload.selectedCountryCode
+          }
+        },
+        ...{
           countryFields: {
             ...state.countryFields,
             ...payload
@@ -22,6 +28,19 @@ const newEmployeeReducer = (state, action) => {
       return {
         ...state,
         ...{ countryFields: mergedCountryFields }
+      };
+    }
+
+    case "SET_FIELDS_CHANGES": {
+      const { id, value } = payload;
+      return {
+        ...state,
+        ...{
+          newClient: {
+            ...state?.newClient,
+            [id]: value
+          }
+        }
       };
     }
 

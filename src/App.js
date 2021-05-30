@@ -24,7 +24,8 @@ const NewEmployeeWrapper = () => {
     countryFields: {
       [initialCountry]: formData[initialCountry],
       selectedCountryCode: initialCountry
-    }
+    },
+    newClient: { countryCode: initialCountry }
   });
 
   const countrySelectorProps = {
@@ -33,6 +34,8 @@ const NewEmployeeWrapper = () => {
     selectedCountryCode: state?.countryFields?.selectedCountryCode,
     dispatch
   };
+
+  // console.log(state);
 
   return (
     <NewEmployee
