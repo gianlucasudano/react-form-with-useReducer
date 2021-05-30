@@ -16,8 +16,7 @@ import newEmployeeReducer from "./reducers/newEmployeeReducer";
 import NewEmployee from "./components/organisms/NewEmployee/NewEmployee";
 const theme = createMuiTheme();
 
-console.log(formData);
-// could be an option from a user setting
+// could be an option from user setting
 const initialCountry = "ES";
 
 const NewEmployeeWrapper = () => {
@@ -31,7 +30,7 @@ const NewEmployeeWrapper = () => {
   const countrySelectorProps = {
     options: mocksData.countries,
     label: mocksData.terms.countriesSelectorLabel,
-    selectedCountryId: state.countryFields.selectedCountryId,
+    selectedCountryId: state?.countryFields?.selectedCountryId,
     dispatch
   };
 

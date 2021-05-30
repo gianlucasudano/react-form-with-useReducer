@@ -18,21 +18,18 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps }) => {
     selectedCountryId,
     ...rest
   } = countrySelectorProps;
-  // state.countryFields.selectedCountryId
 
   const { countryFields } = newEmployeeProps;
 
   const handleFilterChange = useCallback(
     (event) => {
-      console.log(event);
       const { value } = event.target;
-      console.log("countryFields", countryFields[value]);
       if (!countryFields[value]) {
-        console.log("dentro if", countryFields[value]);
-        // we want avoid to call API if country fields are alreay in the state
+        // we want avoid to call API if country fields are already in the state
         dispatch(
-          setCountry({
-            countryFields: { [value]: formData[value] }
+          setCountryFields({
+            [value]: formData[value],
+            selectedCountryId: value
           })
         );
       }
@@ -53,7 +50,6 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps }) => {
         label={label}
         itemId={itemId}
         options={options}
-        // selectedCountryId={selectedCountryId}
         {...rest}
       />
       {countryFields[selectedCountryId].map(
