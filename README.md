@@ -36,6 +36,7 @@ As there isn't currently a backend for this work, on form submit please log to t
 
 # TODO LIST
 ## code best pratices not compliant (those I remember in writing down this README)
+- check for accessibility
 - check if more memoization can be done
 - clean up the code
 - hardcoded strings (app title, submit label,... )
