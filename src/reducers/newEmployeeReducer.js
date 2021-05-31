@@ -31,14 +31,27 @@ const newEmployeeReducer = (state, action) => {
       };
     }
 
-    case "SET_FIELDS_CHANGES": {
-      const { id, value } = payload;
+    case "DELETE_FIELD_ERROR": {
+      const { id } = payload;
       return {
         ...state,
         ...{
-          newClient: {
-            ...state?.newClient,
-            [id]: value
+          fieldsInError: {
+            ...state?.fieldsInError,
+            [id]: false
+          }
+        }
+      };
+    }
+
+    case "GET_FIELD_ERROR": {
+      const { id } = payload;
+      return {
+        ...state,
+        ...{
+          fieldsInError: {
+            ...state?.fieldsInError,
+            [id]: true
           }
         }
       };

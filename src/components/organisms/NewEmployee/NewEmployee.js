@@ -2,7 +2,8 @@ import React, { useCallback, useRef } from "react";
 import CountrySelector from "./elements/CountrySelector/CountrySelector";
 import Input from "../../molecules/Input/Input";
 import {
-  setFieldsChanges,
+  getFieldError,
+  deleteFieldError,
   setCountry,
   setCountryFields
 } from "../../../reducers/newEmployeeActions";
@@ -11,7 +12,7 @@ import {
 import { formData } from "../../../data/mocks";
 
 const NewEmployee = ({ countrySelectorProps, newEmployeeProps, children }) => {
-  const {    
+  const {
     dispatch,
     label,
     itemId,
@@ -20,7 +21,7 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps, children }) => {
     ...rest
   } = countrySelectorProps;
 
-  const { countryFields } = newEmployeeProps;
+  const { countryFields, fieldsInError } = newEmployeeProps;
   const selectedCountryCodeRef = useRef();
   const handleFilterChange = useCallback(
     (event) => {
@@ -48,35 +49,79 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps, children }) => {
   const handleInputChange = useCallback(
     (event) => {
       const { id, value } = event.target;
-      dispatch(setFieldsChanges({ id, value }));
-      console.log({ id, value });
+      if (value.trim()) {
+        dispatch(deleteFieldError({ id, value }));
+      }
     },
     [dispatch]
   );
 
+  const dispatchErrorCallback = ({ id, value }) => {
+    return dispatch(getFieldError({ id, value }));
+  };
+
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    console.log(
+      "JSON data: ",
+      JSON.stringify(
+        Array.from(e.target).reduce((acc, current) => {
+          const { id, value } = current;
+          if (id) {
+            acc[id] = value;
+          }
+          return acc;
+        }, {}),
+        null,
+        2
+      )
+    );
+    // here we need to set the initialState
+  }, []);
+
+  const filteredFieldsInError = fieldsInError
+    ? Object.keys(fieldsInError).reduce((acc, current) => {
+        if (fieldsInError[current] === true) {
+          acc[current] = fieldsInError[current];
+        }
+        return acc;
+      }, {})
+    : {};
+
+  const isSubmitDisabled =
+    !fieldsInError && Object.keys(filteredFieldsInError).length === 0
+      ? true
+      : Object.keys(filteredFieldsInError).length === 0
+      ? false
+      : true;
+
   return (
     <>
-    <form>
-      <CountrySelector
-        callback={handleFilterChange}
-        label={label}
-        itemId={itemId}
-        options={options}
-        {...rest}
-      />
-      {countryFields[
-        selectedCountryCodeRef?.current || selectedCountryCode
-      ].map(({ id, label, type, ...rest }, index) => (
-        <Input
+      <form method="post" onSubmit={handleSubmit}>
+        <CountrySelector
+          callback={handleFilterChange}
           label={label}
-          itemId={id}
-          key={id}
-          type={type}
-          callback={handleInputChange}
+          itemId={itemId}
+          options={options}
           {...rest}
         />
-      ))}
-    </form>
+        {countryFields[
+          selectedCountryCodeRef?.current || selectedCountryCode
+        ].map(({ id, label, type, ...rest }, index) => (
+          <Input
+            label={label}
+            itemId={id}
+            key={id}
+            type={type}
+            callback={handleInputChange}
+            dispatchErrorCallback={dispatchErrorCallback}
+            {...rest}
+          />
+        ))}
+        <button disabled={isSubmitDisabled} value="Submit">
+          Submit
+        </button>
+      </form>
       {children}
     </>
   );

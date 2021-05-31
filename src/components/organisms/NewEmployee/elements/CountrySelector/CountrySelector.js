@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import Select from "../../../../molecules/Select/Select";
-const CountrySelector = ({ itemId = "countrySelector", options, ...rest }) => {
+const CountrySelector = ({ itemId = "countryCode", options, ...rest }) => {
   const countries = useMemo(
     () =>
       options.map((country) => {

@@ -48,7 +48,7 @@ const mocksData = {
     {
       id: "holidayAllowance",
       label: "Holiday allowance",
-      type: "number"
+      type: "text"
     }
   ],
   extraFields: {
@@ -61,7 +61,7 @@ const mocksData = {
       {
         id: "socialInsuranceNumber",
         label: "Social insurance number",
-        type: "number"
+        type: "text"
       }
     ],
     GH: [

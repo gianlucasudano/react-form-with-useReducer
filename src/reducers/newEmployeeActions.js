@@ -1,7 +1,8 @@
 export const newEmployeeActionsActionTypes = {
   SELECT_COUNTRY: "SELECT_COUNTRY",
   SET_COUNTRY_FIELDS: "SET_COUNTRY_FIELDS",
-  SET_FIELDS_CHANGES: "SET_FIELDS_CHANGES"
+  DELETE_FIELD_ERROR: "DELETE_FIELD_ERROR",
+  GET_FIELD_ERROR: "GET_FIELD_ERROR"
 };
 
 export const setCountry = (payload) => ({
@@ -14,7 +15,12 @@ export const setCountryFields = (payload) => ({
   payload
 });
 
-export const setFieldsChanges = (payload) => ({
-  type: newEmployeeActionsActionTypes.SET_FIELDS_CHANGES,
+export const deleteFieldError = (payload) => ({
+  type: newEmployeeActionsActionTypes.DELETE_FIELD_ERROR,
+  payload
+});
+
+export const getFieldError = (payload) => ({
+  type: newEmployeeActionsActionTypes.GET_FIELD_ERROR,
   payload
 });
