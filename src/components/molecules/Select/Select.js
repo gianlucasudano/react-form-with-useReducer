@@ -34,9 +34,7 @@ Select.propTypes = {
   callback: PropTypes.func,
   itemId: PropTypes.string,
   label: PropTypes.string,
-  options: PropTypes.shape({
-    map: PropTypes.func
-  })
+  options: PropTypes.object
 }
 
 export default Select;

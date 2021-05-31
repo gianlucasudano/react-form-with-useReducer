@@ -39,7 +39,7 @@ As there isn't currently a backend for this work, on form submit please log to t
 - check for accessibility
 - check if more memoization can be done
 - clean up the code
-- hardcoded strings (app title, submit label,... )
+- hardcoded strings (app title, submit label,... ) values, should be coming from props
 - maybe more code splitting can be done
 - maybe more styling can be done
 - missing bash script to run test
