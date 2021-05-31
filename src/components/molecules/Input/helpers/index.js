@@ -1,14 +1,14 @@
 const checkForValidation = ({ validationRules, value }) => {
+  console.log({ validationRules, value });
   switch (validationRules?.type) {
     case "MIN_MAX":
-      const trimmedValue = value.trim();
-      if (!/^[0-9]+$/.test(trimmedValue)) {
+      if (!/^[0-9]+$/.test(value)) {
         return true;
       }
       const { max, min } = validationRules;
       const noLimitsRange = !max && !min;
-      const overLimit = trimmedValue > max;
-      const underLimit = trimmedValue < min;
+      const overLimit = value > max;
+      const underLimit = value < min;
       if (noLimitsRange) {
         return false;
       }
