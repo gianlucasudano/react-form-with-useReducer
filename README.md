@@ -40,7 +40,7 @@ As there isn't currently a backend for this work, on form submit please log to t
 - missing Props Type
 - missing JSDOC
 - missing bash script to run test
-- hardcoded strings
+- hardcoded strings (app title, submit label,... )
 - maybe more code splitting can be done
 - maybe more styling can be done
 - clean up the code
@@ -49,7 +49,7 @@ As there isn't currently a backend for this work, on form submit please log to t
 
 ## incomplete logic implementation
 - reset form after submit and prevent multiple click / submitting form
-- form validation in "holiday allowance" can fails on changing country after "holiday allowance" is already filled. To reproduce:
+- form validation in "holiday allowance" can fail on changing country after "holiday allowance" is already filled. To reproduce:
     - Selected country ES, Holiday allowance value 45 info color is blue
     - Select Brazil. The info color is still blue. Should be red because 45 is major than the allowance in Brazil.
 # Installation
