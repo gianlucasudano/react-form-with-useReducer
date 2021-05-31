@@ -36,15 +36,15 @@ As there isn't currently a backend for this work, on form submit please log to t
 
 # TODO LIST
 ## code best pratices not compliant (those I remember in writing down this README)
-- missing test
-- missing Props Type
-- missing JSDOC
-- missing bash script to run test
+- check if more memoization can be done
+- clean up the code
 - hardcoded strings (app title, submit label,... )
 - maybe more code splitting can be done
 - maybe more styling can be done
-- clean up the code
-- check if more memoization can be done
+- missing bash script to run test
+- missing JSDOC
+- missing Props Type
+- missing test
 - validation can be extended and improved (input)
 
 ## incomplete logic implementation
