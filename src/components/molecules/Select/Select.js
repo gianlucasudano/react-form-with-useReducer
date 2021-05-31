@@ -10,7 +10,7 @@ import { StyledLabel, StyledSelect } from "./Select.styled";
  * @param  {Function} props.callback
  * @param  {string} props.label
  * @param  {string} props.itemId
- * @param  {Array} props.options
+ * @param  {object} props.options
  * @param  {object} props.rest - rest props
  * 
  * @returns {React.Component} - <Select />
