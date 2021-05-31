@@ -47,9 +47,9 @@ As there isn't currently a backend for this work, on form submit please log to t
 - maybe more code splitting can be done
 - maybe more styling can be done
 - missing bash script to run test
-- missing JSDOC
-- missing Props Type
-- missing test
+- missing JSDOC and PropTypes (here one component done as example with JSDOC and PropTypes src/components/molecules/Select/Select.js)
+
+- missing test (here one done as example /src/components/molecules/Input/Input.js)
 - validation can be extended and improved (input)
 
 ## incomplete logic implementation
