@@ -45,10 +45,13 @@ As there isn't currently a backend for this work, on form submit please log to t
 - maybe more styling can be done
 - clean up the code
 - check if more memoization can be done
-- validation can be extended and improved
+- validation can be extended and improved (input)
 
 ## incomplete logic implementation
-- reset form after submit and prevent multiple click / submitting form 
+- reset form after submit and prevent multiple click / submitting form
+- form validation in "holiday allowance" can fails on changing country after "holiday allowance" is already filled. To reproduce:
+    - Selected country ES, Holiday allowance value 45 info color is blue
+    - Select Brazil. The info color is still blue. Should be red because 45 is major than the allowance in Brazil.
 # Installation
 
 Download or clone the repo in one folder and install packages
@@ -69,9 +72,9 @@ In the folder where the repo is cloned
 # Notes
 I am aware that in a real work context the implementation is not ready to be review and need more work to be improved.
 
-Below some chooses / assumptions done writing the code and notifies
-- I have preferred to spent more of available time on handle the logic / the state, splitting code / separate concernes, code extendability
-- data are mocked for evident reason
+Below some choices / assumptions done writing the code and notifies
+- I have preferred to spent more of available time on handle the logic / the state, splitting code / separate concerns, code extendability
+- data are mocked because no backend part
 - I'm not using redux or react router (as I'm suggesting in the Proposal) to avoid over engineering in this specific task. The component in any case can be used to consume / handle redux states, without too much effort
 - I'm using Material UI, not for particular preference but to have a theme available and ready made to use with emotion
 
