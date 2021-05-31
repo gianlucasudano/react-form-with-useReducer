@@ -67,7 +67,7 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps, children }) => {
       JSON.stringify(
         Array.from(e.target).reduce((acc, current) => {
           const { id, value } = current;
-          if (id) {
+          if (id && id !== "submit") {
             acc[id] = value;
           }
           return acc;
@@ -76,24 +76,23 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps, children }) => {
         2
       )
     );
-    // here we need to set the initialState
+    // TODO:
+    // here we need to reset form
+    // avoid multiple click on button
   }, []);
 
-  const filteredFieldsInError = fieldsInError
-    ? Object.keys(fieldsInError).reduce((acc, current) => {
-        if (fieldsInError[current] === true) {
-          acc[current] = fieldsInError[current];
-        }
-        return acc;
-      }, {})
-    : {};
+  const filteredFieldsInError = Object.keys(fieldsInError).reduce(
+    (acc, current) => {
+      if (fieldsInError[current] === true) {
+        acc[current] = fieldsInError[current];
+      }
+      return acc;
+    },
+    {}
+  );
 
   const isSubmitDisabled =
-    !fieldsInError && Object.keys(filteredFieldsInError).length === 0
-      ? true
-      : Object.keys(filteredFieldsInError).length === 0
-      ? false
-      : true;
+    Object.keys(filteredFieldsInError).length === 0 ? false : true;
 
   return (
     <>
@@ -118,7 +117,7 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps, children }) => {
             {...rest}
           />
         ))}
-        <button disabled={isSubmitDisabled} value="Submit">
+        <button id="submit" disabled={isSubmitDisabled} value="Submit">
           Submit
         </button>
       </form>

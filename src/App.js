@@ -18,13 +18,16 @@ const theme = createMuiTheme();
 
 // could be an option from user setting
 const initialCountry = "ES";
-
 const NewEmployeeWrapper = () => {
   const [state, dispatch] = useReducer(newEmployeeReducer, {
     countryFields: {
       [initialCountry]: formData[initialCountry],
       selectedCountryCode: initialCountry
-    }
+    },
+    fieldsInError: formData[initialCountry].reduce((acc, current) => {
+      acc[current.id] = true;
+      return acc;
+    }, {})
   });
 
   const countrySelectorProps = {

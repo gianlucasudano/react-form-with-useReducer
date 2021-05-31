@@ -5,12 +5,6 @@ const newEmployeeReducer = (state, action) => {
       return {
         ...state,
         ...{
-          newClient: {
-            ...state?.newClient,
-            countryCode: payload.selectedCountryCode
-          }
-        },
-        ...{
           countryFields: {
             ...state.countryFields,
             ...payload
