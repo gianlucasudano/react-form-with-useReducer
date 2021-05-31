@@ -11,8 +11,6 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { formData, mocksData } from "./data/mocks";
 import newEmployeeReducer from "./reducers/newEmployeeReducer";
-// import isPropValid from "@emotion/is-prop-valid";
-// import styled from "@emotion/styled";
 import NewEmployee from "./components/organisms/NewEmployee/NewEmployee";
 const theme = createMuiTheme();
 
