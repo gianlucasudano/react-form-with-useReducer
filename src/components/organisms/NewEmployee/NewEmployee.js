@@ -23,7 +23,22 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps, children }) => {
 
   const { countryFields, fieldsInError } = newEmployeeProps;
   const selectedCountryCodeRef = useRef();
+  
   const handleFilterChange = useCallback(
+    /**
+     * here we have a BUG
+     * Form validation in "holiday allowance" can fail on changing country after
+     *  "holiday allowance" is already filled.
+     * To reproduce:
+        - Selected country ES, Holiday allowance value 45 info color is blue
+        - Select Brazil. The info color is still blue. Should be red because 45
+        is major than the allowance in Brazil.
+     *   
+     * TODO: on changing country, if we want preserve values for fields already 
+     * changed we need to iterate fields, run the validation rules and update field error state.
+     * potential problem: does the input, with the current implementation, will fire this state changhes?
+     * 
+     */
     (event) => {
       const { value } = event.target;
       selectedCountryCodeRef.current = value;
@@ -65,6 +80,7 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps, children }) => {
     console.log(
       "JSON data: ",
       JSON.stringify(
+        // TODO: compare perfomances using formRef instead of event
         Array.from(e.target).reduce((acc, current) => {
           const { id, value } = current;
           if (id && id !== "submit") {
@@ -76,10 +92,17 @@ const NewEmployee = ({ countrySelectorProps, newEmployeeProps, children }) => {
         2
       )
     );
-    // TODO:
-    // here we need to reset form
-    // avoid multiple click on button
+    /** 
+     *  TODO:here we need to reset form
+     * - we need emptying fields values (formRef.current.reset())
+     * - we need resetting field error state to initial state dispatching
+     *   a reset action and probably as effect avoiding multiple click on button
+     */
+    
+    // formRef.current.submit.disabled = true // this should be removed
+    
   }, []);
+
 
   const filteredFieldsInError = Object.keys(fieldsInError).reduce(
     (acc, current) => {

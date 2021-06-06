@@ -22,7 +22,9 @@ const NewEmployeeWrapper = () => {
       [initialCountry]: formData[initialCountry],
       selectedCountryCode: initialCountry
     },
-    fieldsInError: formData[initialCountry].reduce((acc, current) => {
+    //TODO: fieldsInError naming should be changed in fieldsErrorState.
+    //TODO: the reducer can be moved in a function and used as reset state
+    fieldsInError: formData[initialCountry].reduce((acc, current) => { 
       acc[current.id] = true;
       return acc;
     }, {})
